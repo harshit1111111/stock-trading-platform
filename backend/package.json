@@ -5,10 +5,8 @@
   "scripts": {
     "start": "nodemon index.js"
   },
-  
   "author": "Harshit",
   "license": "ISC",
-  
   "description": "",
   "dependencies": {
     "body-parser": "^2.2.0",
@@ -16,8 +14,7 @@
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "mongoose": "^8.16.5",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "yahoo-finance2": "^3.13.0"
   }
-  
-  
 }

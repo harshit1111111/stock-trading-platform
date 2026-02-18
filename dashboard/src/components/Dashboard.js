@@ -1,31 +1,29 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Apps from "./Apps";
-import Funds from "./Funds";
-import Holdings from "./Holdings";
-
-import Orders from "./Orders";
-import Positions from "./Positions";
 import Summary from "./Summary";
+import Orders from "./Orders";
+import Holdings from "./Holdings";
+import Funds from "./Funds";
+import Learn from "./Learn";
 import WatchList from "./WatchList";
-import { GeneralContextProvider } from "./GeneralContext";
 
 const Dashboard = () => {
   return (
-    <div className="dashboard-container">
-      <GeneralContextProvider>
-        <WatchList />
-      </GeneralContextProvider>
-      <div className="content">
-        <Routes>
-          <Route exact path="/" element={<Summary />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/holdings" element={<Holdings />} />
-          <Route path="/positions" element={<Positions />} />
-          <Route path="/funds" element={<Funds />} />
-          <Route path="/apps" element={<Apps />} />
-        </Routes>
+    <div className="dashboard-container" style={{ display: "flex", height: "90vh" }}>
+      {/* This fixes the 'WatchList is defined but never used' warning */}
+      <WatchList />
+
+      <div className="right-content" style={{ width: "70%", display: "flex", flexDirection: "column",height:"90vh"}}>
+        <div className="content-area" style={{ flex: 1, overflowY: "auto"}}>
+          <Routes>
+            <Route exact path="/" element={<Summary />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/holdings" element={<Holdings />} />
+            <Route path="/funds" element={<Funds />} />
+            <Route path="/Learn" element={<Learn />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );

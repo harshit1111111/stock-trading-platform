@@ -1,78 +1,47 @@
-import React, { useEffect, useState } from "react";
-import axios,{all} from "axios";
-
-//import { holdings } from "../data/data";
-
+import React, { useState, useEffect } from "react";
 
 const Holdings = () => {
-  const [allHoldings, setAllHoldings]=useState([]);
+  const [holdings, setHoldings] = useState([]);
 
-  useEffect(() =>{
-    axios.get("http://localhost:3002/allHoldings").then((res)=>{
-      setAllHoldings(res.data);
-    });
-  },[]);
+  useEffect(() => {
+    const savedHoldings = JSON.parse(localStorage.getItem("holdings")) || [];
+    setHoldings(savedHoldings);
+  }, []);
+
   return (
-  
-    <>
-      <h3 className="title">Holdings ({allHoldings.length})</h3>
-
-      <div className="order-table">
-        <table>
-          <tr>
-            <th>Instrument</th>
-            <th>Qty.</th>
-            <th>Avg. cost</th>
-            <th>LTP</th>
-            <th>Cur. val</th>
-            <th>P&L</th>
-            <th>Net chg.</th>
-            <th>Day chg.</th>
+    <div className="holdings-container" style={{ padding: "20px", height: "90vh" }}>
+      <h2>Holdings : ({holdings.length})</h2>
+      
+      <table style={{ width: "200%", borderCollapse: "collapse", marginTop: "20px" }}>
+        <thead>
+          <tr style={{ borderBottom: "1px solid #ddd", textAlign: "left", color: "#888" }}>
+            <th style={{ padding: "10px" }}>Stocks</th>
+            <th style={{ padding: "10px" }}>Qty.</th>
+            <th style={{ padding: "10px" }}>Avg. Cost</th>
+            <th style={{ padding: "10px" }}>LTP</th>
+            <th style={{ padding: "10px" }}>Cur. Val</th>
+            <th style={{ padding: "10px" }}>P&L</th>
           </tr>
-
-          {allHoldings.map((stock, index) => {
-            const curValue = stock.price * stock.qty;
-            const isProfit = curValue - stock.avg * stock.qty >= 0.0;
-            const profClass = isProfit ? "profit" : "loss";
-            const dayClass = stock.isLoss ? "loss" : "profit";
-
-            return (
-              <tr key={index}>
-                <td>{stock.name}</td>
-                <td>{stock.qty}</td>
-                <td>{stock.avg.toFixed(2)}</td>
-                <td>{stock.price.toFixed(2)}</td>
-                <td>{curValue.toFixed(2)}</td>
-                <td className={profClass}>
-                  {(curValue - stock.avg * stock.qty).toFixed(2)}
-                </td>
-                <td className={profClass}>{stock.net}</td>
-                <td className={dayClass}>{stock.day}</td>
+        </thead>
+        <tbody>
+          {holdings.map((stock, index) => {
+             const currentVal = stock.qty * stock.avgPrice; // Simplified for demo
+             const pnl = 50; // You can add live price logic here later
+             
+             return (
+              <tr key={index} style={{ borderBottom: "1px solid #eee" }}>
+                <td style={{ padding: "10px" }}>{stock.name}</td>
+                <td style={{ padding: "10px" }}>{stock.qty}</td>
+                <td style={{ padding: "10px" }}>{stock.avgPrice.toFixed(2)}</td>
+                <td style={{ padding: "10px" }}>{stock.avgPrice.toFixed(2)}</td>
+                <td style={{ padding: "10px" }}>{currentVal.toFixed(2)}</td>
+                <td style={{ padding: "10px", color: pnl >= 0 ? "green" : "red" }}>{pnl.toFixed(2)}</td>
               </tr>
-            );
+             );
           })}
-        </table>
-      </div>
-
-      <div className="row">
-        <div className="col">
-          <h5>
-            29,875.<span>55</span>{" "}
-          </h5>
-          <p>Total investment</p>
-        </div>
-        <div className="col">
-          <h5>
-            31,428.<span>95</span>{" "}
-          </h5>
-          <p>Current value</p>
-        </div>
-        <div className="col">
-          <h5>1,553.40 (+5.20%)</h5>
-          <p>P&L</p>
-        </div>
-      </div>
-    </>
+        </tbody>
+      </table>
+    </div>
   );
 };
 
