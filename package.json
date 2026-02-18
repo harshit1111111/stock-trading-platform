@@ -1,5 +1,30 @@
 {
   "dependencies": {
-   
-  }
+    "@google/generative-ai": "^0.24.1",
+    "bcrypt": "^6.0.0",
+    "express-validator": "^7.3.1",
+    "react-markdown": "^10.1.0",
+    "react-razorpay": "^3.0.1"
+  },
+  "name": "stock-trading-platform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "scripts": {
+    "start": "concurrently \"cd backend && npm start\" \"cd frontend && PORT=3000 npm start\" \"cd dashboard && PORT=3001 npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshit1111111/stock-trading-platform.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harshit1111111/stock-trading-platform/issues"
+  },
+  "homepage": "https://github.com/harshit1111111/stock-trading-platform#readme"
 }

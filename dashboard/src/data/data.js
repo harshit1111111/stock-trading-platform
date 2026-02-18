@@ -1,174 +1,357 @@
-export const watchlist = [
+// 1. The Stock Market List (WatchList)
+export const stockList = [
   {
-    name: "INFY",
-    price: 1555.45,
-    percent: "-1.60%",
-    isDown: true,
+    "name": "Reliance Industries",
+    "price": 1458.50,
+    "percent": "-0.21%",
+    "isDown": true,
+    "uid": "RELIANCE"
   },
   {
-    name: "ONGC",
-    price: 116.8,
-    percent: "-0.09%",
-    isDown: true,
+    "name": "HDFC Bank",
+    "price": 932.40,
+    "percent": "-0.52%",
+    "isDown": true,
+    "uid": "HDFCBANK"
   },
   {
-    name: "TCS",
-    price: 3194.8,
-    percent: "-0.25%",
-    isDown: true,
+    "name": "Bharti Airtel",
+    "price": 2011.30,
+    "percent": "-1.32%",
+    "isDown": true,
+    "uid": "BHARTIARTL"
   },
   {
-    name: "KPITTECH",
-    price: 266.45,
-    percent: "3.54%",
-    isDown: false,
+    "name": "TCS",
+    "price": 2984.60,
+    "percent": "+1.23%",
+    "isDown": false,
+    "uid": "TCS"
   },
   {
-    name: "QUICKHEAL",
-    price: 308.55,
-    percent: "-0.15%",
-    isDown: true,
+    "name": "State Bank of India",
+    "price": 1144.10,
+    "percent": "-0.17%",
+    "isDown": true,
+    "uid": "SBIN"
   },
   {
-    name: "WIPRO",
-    price: 577.75,
-    percent: "0.32%",
-    isDown: false,
+    "name": "ICICI Bank",
+    "price": 1406.50,
+    "percent": "+0.73%",
+    "isDown": false,
+    "uid": "ICICIBANK"
   },
   {
-    name: "M&M",
-    price: 779.8,
-    percent: "-0.01%",
-    isDown: true,
+    "name": "Infosys",
+    "price": 1497.80,
+    "percent": "+0.04%",
+    "isDown": false,
+    "uid": "INFY"
   },
   {
-    name: "RELIANCE",
-    price: 2112.4,
-    percent: "1.44%",
-    isDown: false,
+    "name": "Bajaj Finance",
+    "price": 965.60,
+    "percent": "-1.79%",
+    "isDown": true,
+    "uid": "BAJFINANCE"
   },
   {
-    name: "HUL",
-    price: 512.4,
-    percent: "1.04%",
-    isDown: false,
+    "name": "Hindustan Unilever",
+    "price": 2453.60,
+    "percent": "+0.76%",
+    "isDown": false,
+    "uid": "HINDUNILVR"
   },
+  {
+    "name": "Larsen & Toubro",
+    "price": 4169.00,
+    "percent": "+1.35%",
+    "isDown": false,
+    "uid": "LT"
+  },
+  {
+    "name": "LIC of India",
+    "price": 891.70,
+    "percent": "-0.42%",
+    "isDown": true,
+    "uid": "LICI"
+  },
+  {
+    "name": "Maruti Suzuki",
+    "price": 15146.00,
+    "percent": "+1.12%",
+    "isDown": false,
+    "uid": "MARUTI"
+  },
+  {
+    "name": "Mahindra & Mahindra",
+    "price": 3675.80,
+    "percent": "+1.83%",
+    "isDown": false,
+    "uid": "M&M"
+  },
+  {
+    "name": "Kotak Mahindra Bank",
+    "price": 429.30,
+    "percent": "+0.12%",
+    "isDown": false,
+    "uid": "KOTAKBANK"
+  },
+  {
+    "name": "HCL Technologies",
+    "price": 1573.10,
+    "percent": "-1.80%",
+    "isDown": true,
+    "uid": "HCLTECH"
+  },
+  {
+    "name": "Axis Bank",
+    "price": 1356.70,
+    "percent": "+1.14%",
+    "isDown": false,
+    "uid": "AXISBANK"
+  },
+  {
+    "name": "Sun Pharma",
+    "price": 1707.80,
+    "percent": "+0.19%",
+    "isDown": false,
+    "uid": "SUNPHARMA"
+  },
+  {
+    "name": "ITC",
+    "price": 321.40,
+    "percent": "-0.43%",
+    "isDown": true,
+    "uid": "ITC"
+  },
+  {
+    "name": "UltraTech Cement",
+    "price": 13023.00,
+    "percent": "-0.19%",
+    "isDown": true,
+    "uid": "ULTRACEMCO"
+  },
+  {
+    "name": "Titan Company",
+    "price": 4269.10,
+    "percent": "+3.09%",
+    "isDown": false,
+    "uid": "TITAN"
+  },
+  {
+    "name": "Adani Ports",
+    "price": 1554.70,
+    "percent": "-0.75%",
+    "isDown": true,
+    "uid": "ADANIPORTS"
+  },
+  {
+    "name": "NTPC",
+    "price": 366.90,
+    "percent": "+1.28%",
+    "isDown": false,
+    "uid": "NTPC"
+  },
+  {
+    "name": "Bajaj Finserv",
+    "price": 2027.90,
+    "percent": "-0.08%",
+    "isDown": true,
+    "uid": "BAJAJFINSV"
+  },
+  {
+    "name": "Bharat Electronics",
+    "price": 437.30,
+    "percent": "-0.25%",
+    "isDown": true,
+    "uid": "BEL"
+  },
+  {
+    "name": "JSW Steel",
+    "price": 1244.10,
+    "percent": "-0.08%",
+    "isDown": true,
+    "uid": "JSWSTEEL"
+  },
+  {
+    "name": "Adani Enterprises",
+    "price": 2228.40,
+    "percent": "-1.01%",
+    "isDown": true,
+    "uid": "ADANIENT"
+  },
+  {
+    "name": "Tata Motors",
+    "price": 379.35,
+    "percent": "+0.32%",
+    "isDown": false,
+    "uid": "TATAMOTORS"
+  },
+  {
+    "name": "Tata Steel",
+    "price": 208.01,
+    "percent": "+2.90%",
+    "isDown": false,
+    "uid": "TATASTEEL"
+  },
+  {
+    "name": "Power Grid Corp",
+    "price": 294.35,
+    "percent": "+1.35%",
+    "isDown": false,
+    "uid": "POWERGRID"
+  },
+  {
+    "name": "Asian Paints",
+    "price": 2393.60,
+    "percent": "-0.87%",
+    "isDown": true,
+    "uid": "ASIANPAINT"
+  },
+  {
+    "name": "Wipro",
+    "price": 231.47,
+    "percent": "+0.53%",
+    "isDown": false,
+    "uid": "WIPRO"
+  },
+  {
+    "name": "Coal India",
+    "price": 430.95,
+    "percent": "-0.35%",
+    "isDown": true,
+    "uid": "COALINDIA"
+  },
+  {
+    "name": "Tech Mahindra",
+    "price": 1644.60,
+    "percent": "+1.50%",
+    "isDown": false,
+    "uid": "TECHM"
+  },
+  {
+    "name": "Nestle India",
+    "price": 1308.60,
+    "percent": "+0.92%",
+    "isDown": false,
+    "uid": "NESTLEIND"
+  },
+  {
+    "name": "ONGC",
+    "price": 272.15,
+    "percent": "+1.88%",
+    "isDown": false,
+    "uid": "ONGC"
+  },
+  {
+    "name": "IndusInd Bank",
+    "price": 1025.50,
+    "percent": "-1.10%",
+    "isDown": true,
+    "uid": "INDUSINDBK"
+  },
+  {
+    "name": "Hindalco",
+    "price": 968.90,
+    "percent": "+0.49%",
+    "isDown": false,
+    "uid": "HINDALCO"
+  },
+  {
+    "name": "Cipla",
+    "price": 1342.10,
+    "percent": "-0.10%",
+    "isDown": true,
+    "uid": "CIPLA"
+  },
+  {
+    "name": "Dr. Reddy's Labs",
+    "price": 1256.00,
+    "percent": "-1.55%",
+    "isDown": true,
+    "uid": "DRREDDY"
+  },
+  {
+    "name": "Apollo Hospitals",
+    "price": 7219.00,
+    "percent": "+0.07%",
+    "isDown": false,
+    "uid": "APOLLOHOSP"
+  },
+  {
+    "name": "Eicher Motors",
+    "price": 7296.00,
+    "percent": "+1.32%",
+    "isDown": false,
+    "uid": "EICHERMOT"
+  },
+  {
+    "name": "Divi's Labs",
+    "price": 3850.50,
+    "percent": "+0.45%",
+    "isDown": false,
+    "uid": "DIVISLAB"
+  },
+  {
+    "name": "Britannia",
+    "price": 4850.20,
+    "percent": "-0.60%",
+    "isDown": true,
+    "uid": "BRITANNIA"
+  },
+  {
+    "name": "Bajaj Auto",
+    "price": 9774.00,
+    "percent": "+1.79%",
+    "isDown": false,
+    "uid": "BAJAJ-AUTO"
+  },
+  {
+    "name": "Hero MotoCorp",
+    "price": 4560.75,
+    "percent": "-0.95%",
+    "isDown": true,
+    "uid": "HEROMOTOCO"
+  },
+  {
+    "name": "Tata Consumer",
+    "price": 1152.20,
+    "percent": "-1.22%",
+    "isDown": true,
+    "uid": "TATACONSUM"
+  },
+  {
+    "name": "BPCL",
+    "price": 540.30,
+    "percent": "+0.85%",
+    "isDown": false,
+    "uid": "BPCL"
+  },
+  {
+    "name": "SBI Life Insurance",
+    "price": 2018.30,
+    "percent": "-0.09%",
+    "isDown": true,
+    "uid": "SBILIFE"
+  },
+  {
+    "name": "HDFC Life",
+    "price": 703.95,
+    "percent": "-0.57%",
+    "isDown": true,
+    "uid": "HDFCLIFE"
+  },
+  {
+    "name": "Grasim Industries",
+    "price": 2953.90,
+    "percent": "+1.15%",
+    "isDown": false,
+    "uid": "GRASIM"
+  }
 ];
-
-// holdings
-export const holdings = [
-  {
-    name: "BHARTIARTL",
-    qty: 2,
-    avg: 538.05,
-    price: 541.15,
-    net: "+0.58%",
-    day: "+2.99%",
-  },
-  {
-    name: "HDFCBANK",
-    qty: 2,
-    avg: 1383.4,
-    price: 1522.35,
-    net: "+10.04%",
-    day: "+0.11%",
-  },
-  {
-    name: "HINDUNILVR",
-    qty: 1,
-    avg: 2335.85,
-    price: 2417.4,
-    net: "+3.49%",
-    day: "+0.21%",
-  },
-  {
-    name: "INFY",
-    qty: 1,
-    avg: 1350.5,
-    price: 1555.45,
-    net: "+15.18%",
-    day: "-1.60%",
-    isLoss: true,
-  },
-  {
-    name: "ITC",
-    qty: 5,
-    avg: 202.0,
-    price: 207.9,
-    net: "+2.92%",
-    day: "+0.80%",
-  },
-  {
-    name: "KPITTECH",
-    qty: 5,
-    avg: 250.3,
-    price: 266.45,
-    net: "+6.45%",
-    day: "+3.54%",
-  },
-  {
-    name: "M&M",
-    qty: 2,
-    avg: 809.9,
-    price: 779.8,
-    net: "-3.72%",
-    day: "-0.01%",
-    isLoss: true,
-  },
-  {
-    name: "RELIANCE",
-    qty: 1,
-    avg: 2193.7,
-    price: 2112.4,
-    net: "-3.71%",
-    day: "+1.44%",
-  },
-  {
-    name: "SBIN",
-    qty: 4,
-    avg: 324.35,
-    price: 430.2,
-    net: "+32.63%",
-    day: "-0.34%",
-    isLoss: true,
-  },
-  {
-    name: "SGBMAY29",
-    qty: 2,
-    avg: 4727.0,
-    price: 4719.0,
-    net: "-0.17%",
-    day: "+0.15%",
-  },
-  {
-    name: "TATAPOWER",
-    qty: 5,
-    avg: 104.2,
-    price: 124.15,
-    net: "+19.15%",
-    day: "-0.24%",
-    isLoss: true,
-  },
-  {
-    name: "TCS",
-    qty: 1,
-    avg: 3041.7,
-    price: 3194.8,
-    net: "+5.03%",
-    day: "-0.25%",
-    isLoss: true,
-  },
-  {
-    name: "WIPRO",
-    qty: 4,
-    avg: 489.3,
-    price: 577.75,
-    net: "+18.08%",
-    day: "+0.32%",
-  },
-];
-
-// positions
+// 2. The Positions List (Dummy data for open positions)
 export const positions = [
   {
     product: "CNC",
@@ -186,7 +369,7 @@ export const positions = [
     qty: 1,
     avg: 3124.75,
     price: 3082.65,
-    net: "+10.04%",
+    net: "-1.35%",
     day: "-1.35%",
     isLoss: true,
   },
