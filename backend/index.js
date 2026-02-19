@@ -5,14 +5,13 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const { body, validationResult } = require("express-validator");
-const User = require('./models/UserModel');
 
 const { HoldingsModel } = require('./models/HoldingsModel');
 const { PositionsModel } = require("./models/PositionsModel");
 const { OrdersModel } = require("./models/OrdersModel");
 const User = require('./models/UserModel');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
 
 const app = express();
