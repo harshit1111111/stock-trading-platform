@@ -27,35 +27,52 @@ function Navbar() {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form class="d-flex" role="search">
-            <ul class="navbar-nav mb-lg-0">
-              <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to="/signup">
-                  Signup
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link active" to="/about">
-                  About
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link active" to="/product">
-                  Product
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link active" to="/pricing">
-                  Pricing
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link active" to="/support">
-                  Support
-                </Link>
-              </li>
-            </ul>
-          </form>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <Link class="nav-link" to="/about">About</Link>
+            </li>
+            <li class="nav-item">
+              <Link class="nav-link" to="/product">Product</Link>
+            </li>
+            <li class="nav-item">
+              <Link class="nav-link" to="/pricing">Pricing</Link>
+            </li>
+            <li class="nav-item">
+              <Link class="nav-link" to="/support">Support</Link>
+            </li>
+          </ul>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <Link
+              to="/signup"
+              style={{
+                padding: "7px 18px",
+                border: "1.5px solid #387ed1",
+                borderRadius: "5px",
+                color: "#387ed1",
+                fontWeight: "600",
+                fontSize: "14px",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Sign Up
+            </Link>
+            <Link
+              to="/login"
+              style={{
+                padding: "7px 18px",
+                background: "#387ed1",
+                borderRadius: "5px",
+                color: "#fff",
+                fontWeight: "600",
+                fontSize: "14px",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Login
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

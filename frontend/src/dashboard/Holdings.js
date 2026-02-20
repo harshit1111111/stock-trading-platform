@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
+import { GeneralContext } from "./GeneralContext";
 
 const Holdings = () => {
-  const [holdings, setHoldings] = useState([]);
-
-  useEffect(() => {
-    const savedHoldings = JSON.parse(localStorage.getItem("holdings")) || [];
-    setHoldings(savedHoldings);
-  }, []);
+  const { holdings } = useContext(GeneralContext);
 
   return (
     <div className="holdings-container" style={{ padding: "20px", height: "90vh" }}>

@@ -4,8 +4,8 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    // 1. Load orders from Local Storage
-    const savedOrders = JSON.parse(localStorage.getItem("orders") || "[]");
+    const uname = localStorage.getItem("username") || "guest";
+    const savedOrders = JSON.parse(localStorage.getItem(`orders_${uname}`) || "[]");
     setOrders(savedOrders);
   }, []);
 

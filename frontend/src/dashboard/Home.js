@@ -7,25 +7,13 @@ import Menu from "./Menu";
 
 const Home = () => {
   return (
-    <div className="main-container">
-      {/* 1. Top Navigation Menu */}
+    <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
+      {/* LEFT: Sidebar */}
       <Menu />
 
-      <div className="content-body" style={{ display: "flex", height: "90vh" }}>
-        
-        {/* 2. LEFT SIDE: Watchlist (Fixed width) */}
-        
-        {/* 3. RIGHT SIDE: Dashboard (Main content) */}
-        <div className="right-pane" style={{ 
-          
-          flex: 1, 
-          overflowY: "auto", 
-          backgroundColor: "#fcfcfc", 
-         
-        }}>
-          <Dashboard />
-        </div>
-
+      {/* RIGHT: Main content */}
+      <div style={{ flex: 1, overflowY: "auto", backgroundColor: "#fcfcfc" }}>
+        <Dashboard />
       </div>
     </div>
   );

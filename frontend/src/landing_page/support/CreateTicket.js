@@ -133,7 +133,7 @@ function CreateTicket() {
         {/* Contact channels */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px", marginTop: "48px" }}>
           {[
-            { icon: "📧", title: "Email Us", info: "support@tradex.in", sub: "Response within 24 hours" },
+            { icon: "📧", title: "Email Us", info: "support@zerodha.com", sub: "Response within 24 hours" },
             { icon: "📞", title: "Call Us", info: "1800-XXX-XXXX", sub: "Mon–Fri, 9AM–6PM" },
             { icon: "💬", title: "Live Chat", info: "Chat on Dashboard", sub: "Available 24×5" },
           ].map((c, i) => (

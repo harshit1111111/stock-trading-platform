@@ -22,6 +22,7 @@ const Login = () => {
       const response = await axios.post("http://localhost:3002/login", { email, password });
 
       if (response.status === 200) {
+        // Just set the username — per-user data loads automatically from holdings_x / funds_x / orders_x keys
         localStorage.setItem("username", response.data.username);
         window.location.href = "/dashboard";
       }

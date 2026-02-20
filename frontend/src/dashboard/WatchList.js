@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { stockList } from "./data/data";
+import { GeneralContext } from "./GeneralContext";
 
 const WatchList = () => {
+  const { holdings, updateHoldings } = useContext(GeneralContext);
   const [stocks, setStocks] = useState(stockList);
   const [generalFunds, setGeneralFunds] = useState(() => {
-    const saved = localStorage.getItem("funds");
+    const uname = localStorage.getItem("username") || "guest";
+    const saved = localStorage.getItem(`funds_${uname}`);
     return saved ? Number(saved) : 100000;
-  });
-
-  // 1. STATE FOR HOLDINGS & P&L
-  const [holdings, setHoldings] = useState(() => {
-    const saved = localStorage.getItem("holdings");
-    return saved ? JSON.parse(saved) : [];
   });
   const [totalPL, setTotalPL] = useState(0);
   
@@ -60,8 +57,9 @@ const WatchList = () => {
         return;
       }
       const newBalance = generalFunds - totalValue;
+      const uname = localStorage.getItem("username") || "guest";
       setGeneralFunds(newBalance);
-      localStorage.setItem("funds", newBalance);
+      localStorage.setItem(`funds_${uname}`, newBalance);
 
       // Add to Holdings
       const existing = updatedHoldings.find(h => h.name === selectedStock.name);
@@ -80,8 +78,9 @@ const WatchList = () => {
       }
       
       const newBalance = generalFunds + totalValue;
+      const uname2 = localStorage.getItem("username") || "guest";
       setGeneralFunds(newBalance);
-      localStorage.setItem("funds", newBalance);
+      localStorage.setItem(`funds_${uname2}`, newBalance);
 
       // Update or Remove from Holdings
       existing.qty -= quantity;
@@ -90,8 +89,7 @@ const WatchList = () => {
       }
     }
 
-    setHoldings(updatedHoldings);
-    localStorage.setItem("holdings", JSON.stringify(updatedHoldings));
+    updateHoldings(updatedHoldings);
     setSelectedStock(null);
     setActionType(null);
   };
@@ -122,16 +120,23 @@ const WatchList = () => {
         <ul className="list">
           {stocks.map((stock, index) => (
             <li key={index} className="watchlist-item">
+              {/* LEFT: stock name */}
               <div className="item-left">
                 <p className={stock.isDown ? "stock-name down" : "stock-name up"}>{stock.name}</p>
               </div>
+
+              {/* RIGHT: price + percent always visible, buttons appear on hover */}
               <div className="item-right">
+                {/* Hover buttons */}
                 <div className="actions">
-                  <button className="btn btn-buy" onClick={() => setSelectedStock(stock) || setActionType("BUY")}>B</button>
-                  <button className="btn btn-sell" onClick={() => setSelectedStock(stock) || setActionType("SELL")}>S</button>
+                  <button className="btn btn-buy" onClick={() => { setSelectedStock(stock); setActionType("BUY"); }}>Buy</button>
+                  <button className="btn btn-sell" onClick={() => { setSelectedStock(stock); setActionType("SELL"); }}>Sell</button>
                 </div>
-                <span className="percent">{stock.percent}%</span>
-                <span className={stock.isDown ? "price down" : "price up"}>{stock.price}</span>
+                {/* Price info */}
+                <div className="price-info">
+                  <span className="percent">{stock.percent}%</span>
+                  <span className={stock.isDown ? "price down" : "price up"}>{stock.price}</span>
+                </div>
               </div>
             </li>
           ))}
@@ -164,21 +169,31 @@ const WatchList = () => {
       </div>
 
       <style>{`
-        .stats-dashboard { display: flex; gap: 10px; padding: 10px; background: #fff; border-bottom: 1px solid #eee; }
-        .stat-box { flex: 1; padding: 15px; border-radius: 4px; background: #f9f9f9; border: 1px solid #eee; display: flex; flexDirection: column; }
-        .stat-box .label { font-size: 12px; color: #666; margin-bottom: 5px; }
-        .stat-box .amount { font-size: 18px; font-weight: bold; }
-        
-        .watchlist-item { display: flex; justify-content: space-between; padding: 12px 15px; border-bottom: 1px solid #eee; align-items: center; }
-        .item-right { display: flex; align-items: center; gap: 10px; min-width: 150px; justify-content: flex-end; }
+        .stats-dashboard { display: flex; gap: 12px; padding: 16px; background: #fff; border-bottom: 1px solid #eee; }
+        .stat-box { flex: 1; padding: 20px 24px; border-radius: 8px; background: #f4f8ff; border: 1px solid #dce8fb; display: flex; flex-direction: column; gap: 6px; }
+        .stat-box .label { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-box .amount { font-size: 22px; font-weight: 800; color: #1a1a2e; }
+
+        .watchlist-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid #f0f0f0; gap: 8px; }
+        .watchlist-item:hover { background: #f7faff; }
+        .item-left { flex: 1; min-width: 0; }
+        .stock-name { margin: 0; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .item-right { display: flex; align-items: center; justify-content: flex-end; min-width: 90px; position: relative; }
+        .price-info { display: flex; flex-direction: column; align-items: flex-end; }
+        .percent { font-size: 11px; color: #888; }
+        .price { font-size: 13px; font-weight: 700; }
+
         .actions { display: none; gap: 5px; }
         .watchlist-item:hover .actions { display: flex; }
-        .btn { border: none; width: 28px; height: 28px; color: white; border-radius: 3px; cursor: pointer; }
+        .watchlist-item:hover .price-info { display: none; }
+
+        .btn { border: none; padding: 5px 12px; font-size: 12px; font-weight: 700; color: white; border-radius: 3px; cursor: pointer; }
         .btn-buy { background: #4184f3; }
         .btn-sell { background: #ff5722; }
         .up { color: #4caf50; }
         .down { color: #df514c; }
-        
+
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; }
         .modal-content { background: white; width: 350px; border-radius: 4px; overflow: hidden; }
         .modal-header { padding: 15px; color: white; }

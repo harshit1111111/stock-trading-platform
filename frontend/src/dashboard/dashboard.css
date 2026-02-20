@@ -250,13 +250,17 @@ code {
 }
 
 .menu-container {
-  flex-basis: 68%;
-  height: 100%;
-  padding: 10px 20px;
-  box-sizing: border-box;
+  width: 220px;
+  min-width: 220px;
+  height: 100vh;
+  background: #fff;
+  border-right: 1px solid #eee;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px 0 0 0;
+  box-sizing: border-box;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.04);
 }
 
 .logo {
@@ -266,18 +270,21 @@ code {
 
 .menus {
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
 }
 
 .menus ul {
   list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .menus li {
-  display: inline-block;
-  margin-right: 30px;
-  text-decoration: none;
+  display: block;
+  width: 100%;
 }
 
 .menu {
@@ -291,8 +298,10 @@ code {
 }
 
 hr {
-  border-left: 0.8px solid rgb(243, 242, 242);
-  height: 30px;
+  width: 90%;
+  border: none;
+  border-top: 1px solid #f0f0f0;
+  margin: 8px auto;
 }
 
 .profile {

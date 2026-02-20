@@ -47,7 +47,7 @@ function Hero() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", color: "#555", lineHeight: "1.9", fontSize: "1rem" }}>
           <div>
             <p>We kick-started operations on the 15th of August, 2010 with the goal of breaking all barriers that traders and investors face in India in terms of cost, support, and technology.</p>
-            <p>We named the company <strong>TradeX</strong> — built with the idea of trading without limits. Today, our disruptive pricing models and in-house technology have made us one of the fastest growing brokers in India.</p>
+            <p>We named the company <strong>Zerodha</strong> — built with the idea of trading without limits. Today, our disruptive pricing models and in-house technology have made us one of the fastest growing brokers in India.</p>
           </div>
           <div>
             <p>Over 1.5+ crore clients place millions of orders every day through our powerful ecosystem of investment platforms, contributing over 15% of all Indian retail trading volumes.</p>

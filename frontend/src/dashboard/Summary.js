@@ -1,42 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { GeneralContext } from "./GeneralContext";
 
 const Summary = () => {
-  const [funds, setFunds] = useState(100000);
-  const [holdings, setHoldings] = useState([]);
+  const { holdings } = useContext(GeneralContext);
+  const [funds, setFunds] = useState(() => {
+    const uname = localStorage.getItem("username") || "guest";
+    const saved = localStorage.getItem(`funds_${uname}`);
+    return saved ? Number(saved) : 100000;
+  });
   const [totalMarketValue, setTotalMarketValue] = useState(0);
 
-  // Sync data from local storage
-  const syncData = () => {
-    const savedFunds = localStorage.getItem("funds");
-    const savedHoldings = localStorage.getItem("holdings");
-    if (savedFunds) setFunds(Number(savedFunds));
-    if (savedHoldings) setHoldings(JSON.parse(savedHoldings));
-  };
-
+  // Re-sync funds whenever holdings change (buy/sell happened in same tab)
   useEffect(() => {
-    syncData();
-    
-    // Listen for updates from other tabs/components
-    const handleStorageChange = () => syncData();
-    window.addEventListener("storage", handleStorageChange);
+    const uname = localStorage.getItem("username") || "guest";
+    const saved = localStorage.getItem(`funds_${uname}`);
+    if (saved) setFunds(Number(saved));
+  }, [holdings]);
 
-    // Live price simulation
+  // Live price simulation
+  useEffect(() => {
     const priceInterval = setInterval(() => {
       let currentMV = 0;
-      const latestHoldings = JSON.parse(localStorage.getItem("holdings")) || [];
-      latestHoldings.forEach((stock) => {
-        const fluctuation = (Math.random() - 0.5) * 0.2; 
+      holdings.forEach((stock) => {
+        const fluctuation = (Math.random() - 0.5) * 0.2;
         const livePrice = stock.avgPrice + (stock.avgPrice * fluctuation / 100);
         currentMV += livePrice * stock.qty;
       });
       setTotalMarketValue(currentMV);
     }, 1000);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      clearInterval(priceInterval);
-    };
-  }, []); // <--- The error was likely here (an extra } after this line)
+    return () => clearInterval(priceInterval);
+  }, [holdings]);
 
   const totalEquity = funds + totalMarketValue;
   const totalPL = totalMarketValue - holdings.reduce((acc, stock) => acc + (stock.avgPrice * stock.qty), 0);
